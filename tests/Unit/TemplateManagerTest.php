@@ -1,32 +1,29 @@
 <?php
 
-require_once __DIR__ . '/../src/Entity/Destination.php';
-require_once __DIR__ . '/../src/Entity/Quote.php';
-require_once __DIR__ . '/../src/Entity/Site.php';
-require_once __DIR__ . '/../src/Entity/Template.php';
-require_once __DIR__ . '/../src/Entity/User.php';
-require_once __DIR__ . '/../src/Helper/SingletonTrait.php';
-require_once __DIR__ . '/../src/Context/ApplicationContext.php';
-require_once __DIR__ . '/../src/Repository/Repository.php';
-require_once __DIR__ . '/../src/Repository/DestinationRepository.php';
-require_once __DIR__ . '/../src/Repository/QuoteRepository.php';
-require_once __DIR__ . '/../src/Repository/SiteRepository.php';
-require_once __DIR__ . '/../src/TemplateManager.php';
+namespace App\Tests;
 
-class TemplateManagerTest extends PHPUnit_Framework_TestCase
+use App\Context\ApplicationContext;
+use App\Entity\Quote;
+use App\Entity\Template;
+use App\Repository\DestinationRepository;
+use App\TemplateManager;
+use Faker\Factory;
+use PHPUnit\Framework\TestCase;
+
+class TemplateManagerTest extends TestCase
 {
-    /**
-     * Init the mocks
-     */
+    private $faker;
+
+    /** Init the mocks */
     public function setUp()
     {
+        $this->faker = Factory::create();
     }
 
-    /**
-     * Closes the mocks
-     */
+    /** Closes the mocks */
     public function tearDown()
     {
+        $this->faker = null;
     }
 
     /**
@@ -34,12 +31,15 @@ class TemplateManagerTest extends PHPUnit_Framework_TestCase
      */
     public function test()
     {
-        $faker = \Faker\Factory::create();
-
-        $expectedDestination = DestinationRepository::getInstance()->getById($faker->randomNumber());
+        $expectedDestination = DestinationRepository::getInstance()->getById($this->faker->randomNumber());
         $expectedUser = ApplicationContext::getInstance()->getCurrentUser();
 
-        $quote = new Quote($faker->randomNumber(), $faker->randomNumber(), $faker->randomNumber(), $faker->date());
+        $quote = new Quote(
+            $this->faker->randomNumber(),
+            $this->faker->randomNumber(),
+            $this->faker->randomNumber(),
+            $this->faker->date()
+        );
 
         $template = new Template(
             1,
