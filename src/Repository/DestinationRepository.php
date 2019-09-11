@@ -1,5 +1,9 @@
 <?php
 
+namespace App\Repository;
+
+use App\Helper\SingletonTrait;
+
 class DestinationRepository implements Repository
 {
     use SingletonTrait;
