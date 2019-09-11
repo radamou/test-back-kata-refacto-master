@@ -32,8 +32,8 @@ class TemplateBuilder
         }
 
         $template = $template
-            ->withContent($this->computeText($template->getContent(), $data))
-            ->withSubject($this->computeText($template->getSubject(), $data));
+            ->withSubject($this->computeText($template->getSubject(), $data))
+            ->withContent($this->computeText($template->getContent(), $data));
 
         return $template;
     }
@@ -54,16 +54,16 @@ class TemplateBuilder
             return $text;
         }
 
-        $quoteEntity = QuoteRepository::getInstance()->getById($quote->getId());
+        $quote = QuoteRepository::getInstance()->getById($quote->getId());
         $site = SiteRepository::getInstance()->getById($quote->getSiteId());
         $destination = DestinationRepository::getInstance()->getById($quote->getDestinationId());
 
-        if (false != strpos($text, '[quote:summary_html]')) {
-            $text = str_replace('[quote:summary_html]', Quote::renderHtml($quoteEntity), $text);
+        if (false != \strpos($text, '[quote:summary_html]')) {
+            $text = \str_replace('[quote:summary_html]', Quote::renderHtml($quote), $text);
         }
 
         if (false !== strpos($text, '[quote:summary]')) {
-            $text = str_replace('[quote:summary]', Quote::renderText($quoteEntity), $text);
+            $text = \str_replace('[quote:summary]', Quote::renderText($quote), $text);
         }
 
         if(!$destination instanceof Destination) {
@@ -71,14 +71,14 @@ class TemplateBuilder
         }
 
         if (false !== strpos($text, '[quote:destination_name]')) {
-            $text = str_replace('[quote:destination_name]', $destination->getCountryName(), $text);
+            $text = \str_replace('[quote:destination_name]', $destination->getCountryName(), $text);
 
         }
 
         if (false !== strpos($text, '[quote:destination_link]')) {
             $text = \str_replace(
                 '[quote:destination_link]',
-                $site->getUrl() . '/' . $destination->getCountryName() . '/quote/' . $quoteEntity->getId(),
+                $site->getUrl() . '/' . $destination->getCountryName() . '/quote/' . $quote->getId(),
                 $text
             );
         }

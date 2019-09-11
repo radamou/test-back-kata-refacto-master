@@ -46,16 +46,11 @@ class TemplateManagerTest extends TestCase
 
         $this->assertEquals(
             'Votre voyage avec une agence locale ' . $expectedDestination->getCountryName(),
-            $message->getContent()
+            $message->getSubject()
         );
         $this->assertEquals(
             "Bonjour Fixture user name, Merci d'avoir contacté un agent local pour votre voyage ".$expectedDestination->getCountryName().". Bien cordialement, L'équipe Evaneos.com www.evaneos.com",
-            $message->getSubject()
+            $message->getContent()
         );
-    }
-
-    public function testComputeText(): void
-    {
-
     }
 }

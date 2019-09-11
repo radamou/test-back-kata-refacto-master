@@ -11,7 +11,7 @@ class TemplateFixture
     {
         return (new Template())
             ->setId(1)
-            ->setContent( 'Votre voyage avec une agence locale [quote:destination_name]')
-            ->setSubject(    "Bonjour [user:first_name], Merci d'avoir contacté un agent local pour votre voyage [quote:destination_name]. Bien cordialement, L'équipe Evaneos.com www.evaneos.com");
+            ->setSubject( 'Votre voyage avec une agence locale [quote:destination_name]')
+            ->setContent(    "Bonjour [user:first_name], Merci d'avoir contacté un agent local pour votre voyage [quote:destination_name]. Bien cordialement, L'équipe Evaneos.com www.evaneos.com");
     }
 }
