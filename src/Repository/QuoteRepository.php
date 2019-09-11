@@ -2,7 +2,9 @@
 
 namespace App\Repository;
 
+use App\Entity\Quote;
 use App\Helper\SingletonTrait;
+use Faker\Factory;
 
 class QuoteRepository implements Repository
 {
@@ -18,11 +20,11 @@ class QuoteRepository implements Repository
     public function __construct()
     {
         // DO NOT MODIFY THIS METHOD
-        $generator = Faker\Factory::create();
+        $generator = Factory::create();
 
         $this->siteId = $generator->numberBetween(1, 10);
         $this->destinationId = $generator->numberBetween(1, 200);
-        $this->date = new DateTime();
+        $this->date = new \DateTime();
     }
 
     /**

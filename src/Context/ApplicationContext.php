@@ -2,7 +2,10 @@
 
 namespace App\Context;
 
+use App\Entity\Site;
+use App\Entity\User;
 use App\Helper\SingletonTrait;
+use Faker\Factory;
 
 class ApplicationContext
 {
@@ -19,7 +22,7 @@ class ApplicationContext
 
     protected function __construct()
     {
-        $faker = \Faker\Factory::create();
+        $faker = Factory::create();
         $this->currentSite = new Site($faker->randomNumber(), $faker->url);
         $this->currentUser = new User($faker->randomNumber(), $faker->firstName, $faker->lastName, $faker->email);
     }

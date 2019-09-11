@@ -2,7 +2,9 @@
 
 namespace App\Repository;
 
+use App\Entity\Destination;
 use App\Helper\SingletonTrait;
+use Faker\Factory;
 
 class DestinationRepository implements Repository
 {
@@ -17,9 +19,9 @@ class DestinationRepository implements Repository
      */
     public function __construct()
     {
-        $this->country = Faker\Factory::create()->country;
+        $this->country = Factory::create()->country;
         $this->conjunction = 'en';
-        $this->computerName = Faker\Factory::create()->slug();
+        $this->computerName = Factory::create()->slug();
     }
 
     /**
