@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App;
+namespace App\Builder;
 
 use App\Entity\Quote;
 use App\Entity\Template;
@@ -12,7 +12,7 @@ use App\Repository\DestinationRepository;
 use App\Repository\QuoteRepository;
 use App\Repository\SiteRepository;
 
-class TemplateManager
+class TemplateBuilder
 {
     /**
      * @var FixturesLoader
@@ -24,7 +24,7 @@ class TemplateManager
         $this->fixtureLoader = $fixtureLoader;
     }
 
-    public function getTemplateComputed($template, array $data): Template
+    public function buildTemplate($template, array $data): Template
     {
         if (!$template instanceof Template) {
             throw new \RuntimeException('no tpl given');

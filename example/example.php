@@ -5,14 +5,14 @@ declare(strict_types=1);
 require_once __DIR__ . '/../vendor/autoload.php';
 
 use App\Entity\Template;
-use App\TemplateManager;
 use App\Entity\Quote;
 use App\Fixtures\FixturesLoader;
+use App\Builder\TemplateBuilder;
 
 $fixtureLoader = FixturesLoader::getInstance();
-$templateManager = new TemplateManager($fixtureLoader);
+$templateBuilder = new TemplateBuilder($fixtureLoader);
 
-$message = $templateManager->getTemplateComputed(
+$message = $templateBuilder->buildTemplate(
     $fixtureLoader->load(Template::class),
     [
         'quote' => $fixtureLoader->load(Quote::class)

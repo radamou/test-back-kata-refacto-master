@@ -2,13 +2,11 @@
 
 namespace App\Tests;
 
-use App\Context\ApplicationContext;
+use App\Builder\TemplateBuilder;
 use App\Entity\Quote;
 use App\Entity\Template;
-use App\Entity\User;
 use App\Fixtures\FixturesLoader;
 use App\Repository\DestinationRepository;
-use App\TemplateManager;
 use Faker\Factory;
 use PHPUnit\Framework\TestCase;
 
@@ -34,20 +32,22 @@ class TemplateManagerTest extends TestCase
     /**
      * @test
      */
-    public function test()
+    public function testComputeText()
     {
         $expectedDestination = DestinationRepository::getInstance()->getById($this->faker->randomNumber());
-        $templateManager = new TemplateManager($this->fixtureLoader);
-        $expectedUser = $this->fixtureLoader->load(User::class);
+        $templateManager = new TemplateBuilder($this->fixtureLoader);
 
-        $message = $templateManager->getTemplateComputed(
+        $message = $templateManager->buildTemplate(
             $this->fixtureLoader->load(Template::class),
             [
                 'quote' => $this->fixtureLoader->load(Quote::class)
             ]
         );
 
-        $this->assertEquals('Votre voyage avec une agence locale ' . $expectedDestination->getCountryName(), $message->getContent());
+        $this->assertEquals(
+            'Votre voyage avec une agence locale ' . $expectedDestination->getCountryName(),
+            $message->getContent()
+        );
         $this->assertEquals(
             "Bonjour Fixture user name, Merci d'avoir contacté un agent local pour votre voyage ".$expectedDestination->getCountryName().". Bien cordialement, L'équipe Evaneos.com www.evaneos.com",
             $message->getSubject()
