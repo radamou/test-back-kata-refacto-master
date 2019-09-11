@@ -32,7 +32,7 @@ class TemplateManagerTest extends TestCase
     /**
      * @test
      */
-    public function testComputeText()
+    public function testBuildTemplate(): void
     {
         $expectedDestination = DestinationRepository::getInstance()->getById($this->faker->randomNumber());
         $templateManager = new TemplateBuilder($this->fixtureLoader);
@@ -52,5 +52,10 @@ class TemplateManagerTest extends TestCase
             "Bonjour Fixture user name, Merci d'avoir contacté un agent local pour votre voyage ".$expectedDestination->getCountryName().". Bien cordialement, L'équipe Evaneos.com www.evaneos.com",
             $message->getSubject()
         );
+    }
+
+    public function testComputeText(): void
+    {
+
     }
 }

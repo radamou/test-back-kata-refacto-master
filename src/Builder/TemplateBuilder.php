@@ -30,13 +30,9 @@ class TemplateBuilder
             throw new \RuntimeException('no tpl given');
         }
 
-        $template = $template->withContent(
-            $this->computeText($template->getContent(), $data)
-        );
-
-        $template = $template->withSubject(
-            $this->computeText($template->getSubject(), $data)
-        );
+        $template = $template
+            ->withContent($this->computeText($template->getContent(), $data))
+            ->withSubject($this->computeText($template->getSubject(), $data));
 
         return $template;
     }

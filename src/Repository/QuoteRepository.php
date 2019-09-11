@@ -16,7 +16,6 @@ class QuoteRepository implements Repository
     private $siteId;
     /** @var int  */
     private $destinationId;
-
     /** @var \DateTime */
     private $date;
 

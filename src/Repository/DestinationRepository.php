@@ -12,8 +12,11 @@ class DestinationRepository implements Repository
 {
     use SingletonTrait;
 
+    /** @var string  */
     private $country;
+    /** @var string  */
     private $conjunction;
+    /** @var string  */
     private $computerName;
 
     /**

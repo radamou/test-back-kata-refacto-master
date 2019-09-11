@@ -12,6 +12,7 @@ class SiteRepository implements Repository
 {
     use SingletonTrait;
 
+    /** @var string */
     private $url;
 
     /**
