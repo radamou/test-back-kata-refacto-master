@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Repository;
 
 use App\Entity\Site;
@@ -29,7 +31,8 @@ class SiteRepository implements Repository
      */
     public function getById($id)
     {
-        // DO NOT MODIFY THIS METHOD
-        return new Site($id, $this->url);
+        // DO NOT MODIFY THIS METHOD, same here
+        return (new Site())->setId($id)
+                ->setUrl($this->url);
     }
 }

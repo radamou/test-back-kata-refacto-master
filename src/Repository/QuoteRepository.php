@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Repository;
 
 use App\Entity\Quote;
@@ -10,8 +12,12 @@ class QuoteRepository implements Repository
 {
     use SingletonTrait;
 
+    /** @var int */
     private $siteId;
+    /** @var int  */
     private $destinationId;
+
+    /** @var \DateTime */
     private $date;
 
     /**
@@ -34,12 +40,11 @@ class QuoteRepository implements Repository
      */
     public function getById($id)
     {
-        // DO NOT MODIFY THIS METHOD
-        return new Quote(
-            $id,
-            $this->siteId,
-            $this->destinationId,
-            $this->date
-        );
+        // DO NOT MODIFY THIS METHOD, (I just used fluent pattern instead)
+        return (new Quote())
+            ->setId($id)
+            ->setDateQuoted($this->date)
+            ->setDestinationId($this->destinationId)
+            ->setSiteId($this->siteId);
     }
 }

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Repository;
 
 use App\Entity\Destination;
@@ -31,12 +33,11 @@ class DestinationRepository implements Repository
      */
     public function getById($id)
     {
-        // DO NOT MODIFY THIS METHOD
-        return new Destination(
-            $id,
-            $this->country,
-            $this->conjunction,
-            $this->computerName
-        );
+        // DO NOT MODIFY THIS METHOD, same here
+        return (new Destination())
+            ->setId($id)
+            ->setCountryName($this->country)
+            ->setConjunction($this->conjunction)
+            ->setComputerName($this->computerName);
     }
 }
