@@ -19,9 +19,6 @@ class QuoteRepository implements Repository
     /** @var \DateTime */
     private $date;
 
-    /**
-     * QuoteRepository constructor.
-     */
     public function __construct()
     {
         // DO NOT MODIFY THIS METHOD

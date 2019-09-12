@@ -15,9 +15,6 @@ class SiteRepository implements Repository
     /** @var string */
     private $url;
 
-    /**
-     * SiteRepository constructor.
-     */
     public function __construct()
     {
         // DO NOT MODIFY THIS METHOD
@@ -32,7 +29,8 @@ class SiteRepository implements Repository
     public function getById($id)
     {
         // DO NOT MODIFY THIS METHOD, same here
-        return (new Site())->setId($id)
+        return (new Site())
+            ->setId($id)
             ->setUrl($this->url);
     }
 }

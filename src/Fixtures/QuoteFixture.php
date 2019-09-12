@@ -7,7 +7,7 @@ namespace App\Fixtures;
 use App\Entity\Quote;
 use Faker\Factory;
 
-class QuoteFixture
+final class QuoteFixture
 {
     public static function create(): Quote
     {

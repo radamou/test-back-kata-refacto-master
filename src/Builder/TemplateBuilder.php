@@ -27,14 +27,12 @@ class TemplateBuilder
     public function buildTemplate($template, array $data): Template
     {
         if (!$template instanceof Template) {
-            throw new \RuntimeException('no tpl given');
+            throw new \InvalidArgumentException('No template found');
         }
 
-        $template = $template
+        return $template
             ->withSubject($this->computeText($template->getSubject(), $data))
             ->withContent($this->computeText($template->getContent(), $data));
-
-        return $template;
     }
 
     private function computeText(string $text, array $data): string

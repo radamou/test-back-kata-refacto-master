@@ -7,7 +7,7 @@ namespace App\Fixtures;
 use App\Entity\Site;
 use Faker\Factory;
 
-class SiteFixture
+final class SiteFixture
 {
     public static function create(): Site
     {

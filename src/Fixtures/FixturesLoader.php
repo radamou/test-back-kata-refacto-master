@@ -10,7 +10,7 @@ use App\Entity\Template;
 use App\Entity\User;
 use App\Helper\SingletonTrait;
 
-class FixturesLoader
+final class FixturesLoader
 {
     use SingletonTrait;
 

@@ -7,7 +7,7 @@ namespace App\Fixtures;
 use App\Entity\User;
 use Faker\Factory;
 
-class UserFixture
+final class UserFixture
 {
     public static function create(): User
     {

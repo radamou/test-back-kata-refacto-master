@@ -19,14 +19,12 @@ class DestinationRepository implements Repository
     /** @var string */
     private $computerName;
 
-    /**
-     * DestinationRepository constructor.
-     */
     public function __construct()
     {
-        $this->country = Factory::create()->country;
+        $generator = Factory::create();
+        $this->country = $generator->country;
         $this->conjunction = 'en';
-        $this->computerName = Factory::create()->slug();
+        $this->computerName = $generator->slug();
     }
 
     /**

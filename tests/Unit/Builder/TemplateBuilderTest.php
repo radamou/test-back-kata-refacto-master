@@ -55,7 +55,9 @@ class TemplateBuilderTest extends TestCase
             $message->getSubject()
         );
         $this->assertEquals(
-            "Bonjour Fixture user name, Merci d'avoir contacté un agent local pour votre voyage ".$expectedDestination->getCountryName().". Bien cordialement, L'équipe Evaneos.com www.evaneos.com",
+            "Bonjour Fixture user name, Merci d'avoir contacté un agent local pour votre voyage "
+            .$expectedDestination->getCountryName()
+            .". Bien cordialement, L'équipe Evaneos.com www.evaneos.com",
             $message->getContent()
         );
     }

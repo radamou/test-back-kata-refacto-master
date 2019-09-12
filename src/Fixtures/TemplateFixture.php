@@ -6,7 +6,7 @@ namespace App\Fixtures;
 
 use App\Entity\Template;
 
-class TemplateFixture
+final class TemplateFixture
 {
     public static function create(): Template
     {
