@@ -33,7 +33,7 @@ class FixturesLoader
                 return QuoteFixture::create();
                 break;
             default:
-                return;
+                throw new \InvalidArgumentException("Invalid class name given");
         }
     }
 }

@@ -1,6 +1,7 @@
 CURRENT_DIR=$(patsubst %/,%,$(dir $(realpath $(firstword $(MAKEFILE_LIST)))))
 
 .PHONY: test test-cs test-quality test-unit cs-fix
+
 test: test-cs test-quality test-unit
 
 test-quality: ./vendor

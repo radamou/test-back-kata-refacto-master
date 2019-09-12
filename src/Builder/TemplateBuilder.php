@@ -44,7 +44,7 @@ class TemplateBuilder
     {
         $user = (isset($data['user']) && ($data['user']  instanceof User)) ? $data['user'] : $this->fixtureLoader->load(User::class);
 
-        if ($user && false !== \strpos($text, '[user:first_name]')) {
+        if (false !== \strpos($text, '[user:first_name]')) {
             $text = \str_replace('[user:first_name]', \ucfirst(\mb_strtolower($user->getFirstName())), $text);
         }
 
@@ -66,10 +66,6 @@ class TemplateBuilder
 
         if (false !== \strpos($text, '[quote:summary]')) {
             $text = \str_replace('[quote:summary]', Quote::renderText($quote), $text);
-        }
-
-        if (!$destination) {
-            return $text;
         }
 
         if (false !== \strpos($text, '[quote:destination_name]')) {

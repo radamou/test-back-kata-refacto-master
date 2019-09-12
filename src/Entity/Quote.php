@@ -12,7 +12,7 @@ class Quote
     private $siteId;
     /** @var int */
     private $destinationId;
-    /** @var \DateTime */
+    /** @var \DateTimeImmutable */
     private $dateQuoted;
 
     public function getId(): int
