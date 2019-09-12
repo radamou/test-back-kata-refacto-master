@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Tests;
+namespace App\Tests\Builder;
 
 use App\Builder\TemplateBuilder;
+use App\Builder\TextBuilder;
 use App\Entity\Quote;
 use App\Entity\Template;
 use App\Fixtures\FixturesLoader;
@@ -10,23 +11,28 @@ use App\Repository\DestinationRepository;
 use Faker\Factory;
 use PHPUnit\Framework\TestCase;
 
-class TemplateManagerTest extends TestCase
+class TemplateBuilderTest extends TestCase
 {
     private $faker;
+    /** @var FixturesLoader */
     private $fixtureLoader;
+    /** @var TextBuilder */
+    private $textBuilder;
 
     /** Init the mocks */
-    public function setUp()
+    public function setUp(): void
     {
         $this->faker = Factory::create();
         $this->fixtureLoader = FixturesLoader::getInstance();
+        $this->textBuilder = new TextBuilder($this->fixtureLoader);
     }
 
     /** Closes the mocks */
-    public function tearDown()
+    public function tearDown(): void
     {
         $this->faker = null;
         $this->fixtureLoader = null;
+        $this->textBuilder = null;
     }
 
     /**
@@ -35,9 +41,9 @@ class TemplateManagerTest extends TestCase
     public function testBuildTemplate(): void
     {
         $expectedDestination = DestinationRepository::getInstance()->getById($this->faker->randomNumber());
-        $templateManager = new TemplateBuilder($this->fixtureLoader);
+        $templateBuilder= new TemplateBuilder($this->textBuilder);
 
-        $message = $templateManager->buildTemplate(
+        $message = $templateBuilder->buildTemplate(
             $this->fixtureLoader->load(Template::class),
             [
                 'quote' => $this->fixtureLoader->load(Quote::class)

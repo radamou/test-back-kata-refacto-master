@@ -8,9 +8,11 @@ use App\Entity\Template;
 use App\Entity\Quote;
 use App\Fixtures\FixturesLoader;
 use App\Builder\TemplateBuilder;
+use App\Builder\TextBuilder;
 
 $fixtureLoader = FixturesLoader::getInstance();
-$templateBuilder = new TemplateBuilder($fixtureLoader);
+$textBuilder = new TextBuilder($fixtureLoader);
+$templateBuilder = new TemplateBuilder($textBuilder);
 
 $message = $templateBuilder->buildTemplate(
     $fixtureLoader->load(Template::class),
