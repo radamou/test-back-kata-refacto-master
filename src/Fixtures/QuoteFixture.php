@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Fixtures;
 
 use App\Entity\Quote;
@@ -13,8 +15,8 @@ class QuoteFixture
 
         return (new Quote())
             ->setId($faker->randomNumber())
-            ->setDateQuoted(new \DateTime())
+            ->setDateQuoted(new \DateTimeImmutable())
             ->setDestinationId($faker->randomNumber())
-            ->setSiteId( $faker->randomNumber());
+            ->setSiteId($faker->randomNumber());
     }
 }

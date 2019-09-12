@@ -7,8 +7,8 @@ namespace App\Helper;
 trait SingletonTrait
 {
     /**
-     * @var $this
-     */
+     * @var
+     * $this*/
     protected static $instance = null;
 
     /**

@@ -51,24 +51,24 @@ class Quote
         return $this;
     }
 
-    public function getDateQuoted(): \DateTime
+    public function getDateQuoted(): \DateTimeImmutable
     {
         return $this->dateQuoted;
     }
 
-    public function setDateQuoted(\DateTime $dateQuoted): self
+    public function setDateQuoted(\DateTimeImmutable $dateQuoted): self
     {
         $this->dateQuoted = $dateQuoted;
 
         return $this;
     }
 
-    public static function renderHtml(Quote $quote): string
+    public static function renderHtml(self $quote): string
     {
-        return '<p>' . $quote->id . '</p>';
+        return '<p>'.$quote->id.'</p>';
     }
 
-    public static function renderText(Quote $quote): string
+    public static function renderText(self $quote): string
     {
         return (string) $quote->id;
     }

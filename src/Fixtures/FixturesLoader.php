@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Fixtures;
 
 use App\Entity\Quote;
@@ -12,6 +14,9 @@ class FixturesLoader
 {
     use SingletonTrait;
 
+    /**
+     * @return mixed
+     */
     public function load(string $class)
     {
         switch ($class) {
@@ -28,7 +33,7 @@ class FixturesLoader
                 return QuoteFixture::create();
                 break;
             default:
-                return null;
+                return;
         }
     }
 }

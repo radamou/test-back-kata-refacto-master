@@ -17,7 +17,6 @@ class SiteRepository implements Repository
 
     /**
      * SiteRepository constructor.
-     *
      */
     public function __construct()
     {
@@ -34,6 +33,6 @@ class SiteRepository implements Repository
     {
         // DO NOT MODIFY THIS METHOD, same here
         return (new Site())->setId($id)
-                ->setUrl($this->url);
+            ->setUrl($this->url);
     }
 }

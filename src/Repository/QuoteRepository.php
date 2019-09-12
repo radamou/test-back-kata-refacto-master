@@ -14,7 +14,7 @@ class QuoteRepository implements Repository
 
     /** @var int */
     private $siteId;
-    /** @var int  */
+    /** @var int */
     private $destinationId;
     /** @var \DateTime */
     private $date;
@@ -29,7 +29,7 @@ class QuoteRepository implements Repository
 
         $this->siteId = $generator->numberBetween(1, 10);
         $this->destinationId = $generator->numberBetween(1, 200);
-        $this->date = new \DateTime();
+        $this->date = new \DateTimeImmutable();
     }
 
     /**

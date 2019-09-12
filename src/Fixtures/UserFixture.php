@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Fixtures;
 
 use App\Entity\User;
@@ -13,7 +15,7 @@ class UserFixture
 
         return (new User())
             ->setId($faker->randomNumber())
-            ->setFirstName("Fixture User Name")
+            ->setFirstName('Fixture User Name')
             ->setLastName($faker->lastName)
             ->setEmail($faker->email);
     }

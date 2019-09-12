@@ -6,7 +6,7 @@ namespace App\Entity;
 
 class User
 {
-    /** @var string */
+    /** @var int */
     private $id;
     /** @var string */
     private $firstName;
@@ -15,12 +15,12 @@ class User
     /** @var string */
     private $email;
 
-    public function getId(): string
+    public function getId(): int
     {
         return $this->id;
     }
 
-    public function setId(string $id): self
+    public function setId(int $id): self
     {
         $this->id = $id;
 
@@ -38,7 +38,6 @@ class User
 
         return $this;
     }
-
 
     public function getLastName(): string
     {

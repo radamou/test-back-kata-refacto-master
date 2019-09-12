@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Builder;
 
-use App\Entity\Destination;
 use App\Entity\Quote;
 use App\Entity\Template;
 use App\Entity\User;
@@ -25,6 +24,9 @@ class TemplateBuilder
         $this->fixtureLoader = $fixtureLoader;
     }
 
+    /**
+     * @param mixed $template
+     */
     public function buildTemplate($template, array $data): Template
     {
         if (!$template instanceof Template) {
@@ -38,19 +40,19 @@ class TemplateBuilder
         return $template;
     }
 
-    private function computeText($text, array $data): string
+    private function computeText(string $text, array $data): string
     {
-        $user  = (isset($data['user'])  and ($data['user']  instanceof User))  ? $data['user']  : $this->fixtureLoader->load(User::class);
+        $user = (isset($data['user']) && ($data['user']  instanceof User)) ? $data['user'] : $this->fixtureLoader->load(User::class);
 
-        if($user && false !== strpos($text, '[user:first_name]')) {
-            $text = \str_replace('[user:first_name]', ucfirst(\mb_strtolower($user->getFirstName())), $text);
+        if ($user && false !== \strpos($text, '[user:first_name]')) {
+            $text = \str_replace('[user:first_name]', \ucfirst(\mb_strtolower($user->getFirstName())), $text);
         }
 
-        if(!isset($data['quote'])) {
+        if (!isset($data['quote'])) {
             return $text;
         }
 
-        if(!($quote = $data['quote']) instanceof Quote) {
+        if (!($quote = $data['quote']) instanceof Quote) {
             return $text;
         }
 
@@ -58,27 +60,26 @@ class TemplateBuilder
         $site = SiteRepository::getInstance()->getById($quote->getSiteId());
         $destination = DestinationRepository::getInstance()->getById($quote->getDestinationId());
 
-        if (false != \strpos($text, '[quote:summary_html]')) {
+        if (false !== \strpos($text, '[quote:summary_html]')) {
             $text = \str_replace('[quote:summary_html]', Quote::renderHtml($quote), $text);
         }
 
-        if (false !== strpos($text, '[quote:summary]')) {
+        if (false !== \strpos($text, '[quote:summary]')) {
             $text = \str_replace('[quote:summary]', Quote::renderText($quote), $text);
         }
 
-        if(!$destination instanceof Destination) {
+        if (!$destination) {
             return $text;
         }
 
-        if (false !== strpos($text, '[quote:destination_name]')) {
+        if (false !== \strpos($text, '[quote:destination_name]')) {
             $text = \str_replace('[quote:destination_name]', $destination->getCountryName(), $text);
-
         }
 
-        if (false !== strpos($text, '[quote:destination_link]')) {
+        if (false !== \strpos($text, '[quote:destination_link]')) {
             $text = \str_replace(
                 '[quote:destination_link]',
-                $site->getUrl() . '/' . $destination->getCountryName() . '/quote/' . $quote->getId(),
+                $site->getUrl().'/'.$destination->getCountryName().'/quote/'.$quote->getId(),
                 $text
             );
         }

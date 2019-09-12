@@ -19,6 +19,7 @@ class Site
     public function setId(int $id): self
     {
         $this->id = $id;
+
         return $this;
     }
 
@@ -30,6 +31,7 @@ class Site
     public function setUrl(string $url): self
     {
         $this->url = $url;
+
         return $this;
     }
 }

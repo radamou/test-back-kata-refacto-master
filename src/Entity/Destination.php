@@ -37,6 +37,7 @@ class Destination
     public function setCountryName(string $countryName): self
     {
         $this->countryName = $countryName;
+
         return $this;
     }
 
