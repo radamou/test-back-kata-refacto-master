@@ -1,8 +1,8 @@
 CURRENT_DIR=$(patsubst %/,%,$(dir $(realpath $(firstword $(MAKEFILE_LIST)))))
 
-.PHONY: test test-cs test-quality test-unit fix
+.PHONY: test test-quality test-unit phpcs
 
-test: test-cs test-quality test-unit
+test: test-unit phpcs test-quality
 
 test-quality: ./vendor
 	./vendor/bin/phpstan analyse -l max .
@@ -10,8 +10,8 @@ test-quality: ./vendor
 test-unit: ./vendor
 	./vendor/bin/phpunit --stop-on-failure
 
-fix: ./vendor
-    ./vendor/bin/php-cs-fixer fix --config=.php_cs -v
+phpcs: ./vendor
+	./vendor/bin/php-cs-fixer fix --config=.php_cs -v
 
 ./vendor: ./composer.lock
 	composer install
