@@ -1,0 +1,7 @@
+parameters:
+  excludes_analyse:
+  - %rootDir%/../../../vendor
+  - %rootDir%/../../../Tests
+
+includes:
+- vendor/phpstan/phpstan-strict-rules/rules.neon
