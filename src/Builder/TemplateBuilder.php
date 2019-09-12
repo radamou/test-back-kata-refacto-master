@@ -39,8 +39,9 @@ class TemplateBuilder
 
     private function computeText(string $text, array $data): string
     {
-        $this->textBuilder->addUser($text, $data)
-                 ->addQuote($this->textBuilder->getText(), $data);
+        $this->textBuilder
+            ->addUser($text, $data)
+            ->addQuote($this->textBuilder->getText(), $data);
 
         return $this->textBuilder->getText();
     }

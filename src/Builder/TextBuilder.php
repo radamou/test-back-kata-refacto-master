@@ -1,11 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Builder;
 
 use App\Entity\Quote;
 use App\Entity\User;
 use App\Fixtures\FixturesLoader;
-use App\Helper\SingletonTrait;
 use App\Repository\DestinationRepository;
 use App\Repository\SiteRepository;
 
@@ -19,17 +20,17 @@ final class TextBuilder
     /** @var string */
     private $text = '';
 
+    public function __construct(FixturesLoader $fixtureLoader)
+    {
+        $this->fixtureLoader = $fixtureLoader;
+    }
+
     /**
      * @return string
      */
     public function getText(): string
     {
         return $this->text;
-    }
-
-    public function __construct(FixturesLoader $fixtureLoader)
-    {
-        $this->fixtureLoader = $fixtureLoader;
     }
 
     public function addUser(string $text, array $data): self
